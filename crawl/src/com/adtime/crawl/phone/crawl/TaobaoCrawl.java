@@ -15,7 +15,10 @@ import jp.jun_nama.test.utf7ime.helper.Utf7ImeHelper;
 
 public class TaobaoCrawl extends UiAutomatorTestCase {
 
+	
+	
 	public void testAlimama() throws IOException {
+		int items = 0; 
 		while(true){
 			try {
 				JSONObject json =  DataUpload.loadData();
@@ -28,6 +31,18 @@ public class TaobaoCrawl extends UiAutomatorTestCase {
 					crawl.put("tklStr",code);
 					DataUpload.uploadData(new JSONObject(crawl));
 					System.out.println("爬取一条数据:"+crawl+"\t总耗时："+(System.currentTimeMillis()-start)+"ms");
+					items ++;
+					if(items >= 50) {
+						getUiDevice().pressRecentApps();
+						UiObject recentapp = new UiObject(new UiSelector().resourceId("com.android.systemui:id/task_view_thumbnail"));
+						do{
+							recentapp.waitForExists(2000);            
+				            if(recentapp.exists()){
+				                recentapp.swipeLeft(50);
+				            }                
+				        }while(recentapp.exists());   
+						items = 0 ;
+					}
 				}
 				Thread.sleep(500L);
 			} catch (Exception e) {
@@ -39,9 +54,8 @@ public class TaobaoCrawl extends UiAutomatorTestCase {
 
 	@SuppressWarnings("deprecation")
 	private Map<String, String> crawl(String code) throws Exception{
-		UiObject uio = null;
 		int i = 50;
-		uio = new UiObject(new UiSelector().resourceId("com.example.mytest:id/copyValue"));
+		UiObject uio = new UiObject(new UiSelector().resourceId("com.example.mytest:id/copyValue"));
 		if(uio.exists()){
 			uio.setText(Utf7ImeHelper.e(code));
 			uio = new UiObject(new UiSelector().resourceId("com.example.mytest:id/copy"));
@@ -49,7 +63,7 @@ public class TaobaoCrawl extends UiAutomatorTestCase {
 		}else{
 			Runtime.getRuntime().exec("monkey -p com.example.mytest -v 1"); // 打开中间程序
 			do {
-				Thread.sleep(100L);
+				Thread.sleep(500L);
 				uio = new UiObject(new UiSelector().resourceId("com.example.mytest:id/copyValue"));
 				if (uio.exists()) {
 					uio.setText(Utf7ImeHelper.e(code));
