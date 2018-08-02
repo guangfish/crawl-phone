@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button
+        android:id="@+id/copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="copyData"
+        android:text="@string/copy" />
+
+    <EditText
+        android:id="@+id/copyValue"
+        android:layout_marginTop="40dip"
+         android:hint="@string/copyinput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/paste"
+        
+        android:layout_marginTop="80dip"
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pasteData"
+        android:text="@string/paste" />
+
+    <EditText
+        android:id="@+id/pasteValue"
+       	android:layout_marginTop="120dip"
+        android:hint="@string/pasteinput"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

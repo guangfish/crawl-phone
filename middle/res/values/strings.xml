@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">middle</string>
+    
+    <string name="copy">copy</string>
+    <string name="paste">paste</string>
+	<string name="copyinput">copy Test</string>
+	<string name="pasteinput">paste Test</string>
+</resources>
