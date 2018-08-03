@@ -5,6 +5,4 @@
     
     <string name="copy">copy</string>
     <string name="paste">paste</string>
-	<string name="copyinput">copy Test</string>
-	<string name="pasteinput">paste Test</string>
 </resources>
